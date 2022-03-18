@@ -9,12 +9,17 @@ import SwiftUI
 
 @main
 struct LandMarksApp: App {
-	@StateObject private var landmarksRepository = DataRepository()
-
+	@StateObject private var dataStorage = DataRepository()
+	
 	var body: some Scene {
-        WindowGroup {
-            ContentView()
-				.environmentObject(self.landmarksRepository)
-        }
-    }
+		WindowGroup {
+			ContentView()
+				.environmentObject(self.dataStorage)
+		}
+		
+	#if os(watchOS)
+	WKNotificationScene(controller: NotificationController.self, category: "LandmarkNear")
+	#endif
+	}
+	
 }
