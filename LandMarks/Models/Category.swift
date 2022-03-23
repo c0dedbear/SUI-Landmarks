@@ -13,3 +13,14 @@ enum Category: String, CaseIterable, Codable
 	case rivers = "Rivers"
 	case mountains = "Mountains"
 }
+
+extension Category {
+	enum Filter: String, CaseIterable, Identifiable {
+		case all = "All"
+		case lakes = "Lakes"
+		case rivers = "Rivers"
+		case mountains = "Mountains"
+		
+		var id: Filter { self }
+	}
+}
